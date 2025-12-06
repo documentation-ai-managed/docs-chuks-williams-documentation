@@ -1,0 +1,149 @@
+---
+title: Guides
+description: Step-by-step guides for common documentation tasks in Chuks Williams
+---
+
+## Documentation Guides
+
+This section provides practical guides to help you make the most of Chuks Williams Documentation. Whether you're setting up your first project or optimizing your workflow, these guides walk you through common scenarios and best practices.
+
+<Columns cols={2}>
+  <Card title="Getting Started" icon="rocket" href="#getting-started-guide">
+    New to the platform? Start here with our comprehensive onboarding guide.
+  </Card>
+  <Card title="Migration Guide" icon="upload" href="#migration-guide">
+    Moving from another documentation tool? Learn how to import your existing content.
+  </Card>
+</Columns>
+
+## Getting Started Guide
+
+<Steps>
+  <Step title="Account Setup" icon="user">
+    Create your Chuks Williams account and verify your email address.
+  </Step>
+  <Step title="Dashboard Tour" icon="home">
+    Explore the main dashboard and familiarize yourself with the navigation.
+  </Step>
+  <Step title="Create First Project" icon="folder">
+    Click 'New Project' and give it a descriptive name and description.
+  </Step>
+  <Step title="Add Documentation" icon="file-text">
+    Use the editor to create your first documentation page with Markdown formatting.
+  </Step>
+  <Step title="Invite Team Members" icon="users">
+    Add collaborators to your project with appropriate permission levels.
+  </Step>
+</Steps>
+
+## Migration Guide
+
+<ExpandableGroup>
+  <Expandable title="From Confluence">
+    Export your Confluence space as HTML or XML, then use our import tool to bring the content into Chuks Williams.
+  </Expandable>
+  <Expandable title="From GitHub Wiki">
+    Clone your wiki repository and use our bulk import feature to upload all Markdown files at once.
+  </Expandable>
+  <Expandable title="From ReadMe.io">
+    Export your documentation and use our API to programmatically create projects and documents.
+  </Expandable>
+</ExpandableGroup>
+
+## Advanced Features
+
+<Tabs>
+  <Tab title="Custom Domains" icon="globe">
+    Set up custom domains for your documentation to match your brand. Configure DNS settings and SSL certificates through the dashboard.
+  </Tab>
+  <Tab title="Version Management" icon="git-branch">
+    Create versioned releases of your documentation. Users can switch between versions using the version selector.
+  </Tab>
+  <Tab title="Search Optimization" icon="search">
+    Improve discoverability with custom meta tags, structured data, and search engine optimization settings.
+  </Tab>
+</Tabs>
+
+## Troubleshooting Common Issues
+
+<Callout kind="alert">
+  Having trouble with uploads? Check that your files are under the 10MB size limit and in supported formats.
+</Callout>
+
+| Issue | Solution |
+|-------|----------|
+| Upload fails | Check file size and format compatibility |
+| Permission denied | Verify your role has write access |
+| Search not working | Rebuild search index from project settings |
+| Webhooks not firing | Confirm webhook URL is accessible |
+
+## Workflow Optimization
+
+<Steps>
+  <Step title="Set Up Templates" icon="file">
+    Create reusable templates for common document types like API guides or user manuals.
+  </Step>
+  <Step title="Configure Notifications" icon="bell">
+    Set up email and Slack notifications for important events like new comments or approvals.
+  </Step>
+  <Step title="Automate Publishing" icon="zap">
+    Use webhooks and APIs to automatically publish documentation when code changes.
+  </Step>
+  <Step title="Monitor Analytics" icon="bar-chart">
+    Track page views, search queries, and user engagement to improve your documentation.
+  </Step>
+</Steps>
+
+## Code Examples
+
+<CodeGroup tabs="Shell,Python">
+  ```bash
+# Bulk import documents
+for file in docs/*.md; do
+  curl -X POST \
+    'https://api.chukswilliams.com/v1/documents' \
+    -H 'Authorization: Bearer your-api-key' \
+    -F "file=@$file" \
+    -F 'project_id=your-project-id'
+done
+  ```
+  ```python
+import os
+from chuks_williams_docs import Client
+
+client = Client(api_key='your-api-key')
+
+# Bulk import Markdown files
+for filename in os.listdir('docs'):
+    if filename.endswith('.md'):
+        with open(f'docs/{filename}', 'r') as f:
+            content = f.read()
+        client.documents.create(
+            project_id='your-project-id',
+            title=filename.replace('.md', ''),
+            content=content
+        )
+  ```
+</CodeGroup>
+
+## Community Resources
+
+<Columns cols={3}>
+  <Card title="Forum" icon="message-square" href="#">
+    Join discussions with other users and share tips.
+  </Card>
+  <Card title="Templates" icon="file" href="#">
+    Download pre-built templates for common documentation needs.
+  </Card>
+  <Card title="Webinars" icon="video" href="#">
+    Watch recorded sessions on advanced features and best practices.
+  </Card>
+</Columns>
+
+<Callout kind="success">
+  These guides should help you get up and running quickly. Remember to explore the interactive tutorials in the dashboard for hands-on learning.
+</Callout>
+
+## Next Steps
+
+Once you've completed these guides, explore our API documentation for programmatic access and our changelog for the latest features and improvements.

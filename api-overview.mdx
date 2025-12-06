@@ -1,0 +1,135 @@
+---
+title: API Overview
+description: Comprehensive guide to using the Chuks Williams Documentation API
+---
+
+## API Overview
+
+The Chuks Williams Documentation API provides programmatic access to all documentation management features. Use this RESTful API to create, update, and manage your documentation projects and content from your applications.
+
+<Callout kind="info">
+  All API endpoints require authentication using an API key. Obtain your key from the dashboard settings.
+</Callout>
+
+## Authentication
+
+<Steps>
+  <Step title="Get Your API Key" icon="key">
+    Log into your Chuks Williams account and navigate to Settings > API Keys to generate a new key.
+  </Step>
+  <Step title="Include in Headers" icon="file-text">
+    Include the API key in the Authorization header for all requests: `Authorization: Bearer your-api-key`.
+  </Step>
+  <Step title="Test Authentication" icon="check">
+    Make a test request to verify your key is working correctly.
+  </Step>
+</Steps>
+
+## Core Resources
+
+<Tabs>
+  <Tab title="Projects" icon="folder">
+    Projects are the top-level containers for your documentation. Each project can contain multiple documents and has its own settings and permissions.
+  </Tab>
+  <Tab title="Documents" icon="file-text">
+    Individual documentation pages within projects. Documents support Markdown formatting and can be organized hierarchically.
+  </Tab>
+  <Tab title="Users" icon="users">
+    Manage team members and their access levels for each project.
+  </Tab>
+</Tabs>
+
+## Error Handling
+
+<ExpandableGroup>
+  <Expandable title="Common Error Codes">
+    - `400 Bad Request`: Invalid request parameters
+    - `401 Unauthorized`: Missing or invalid API key
+    - `403 Forbidden`: Insufficient permissions
+    - `404 Not Found`: Resource doesn't exist
+    - `429 Too Many Requests`: Rate limit exceeded
+  </Expandable>
+  <Expandable title="Rate Limiting">
+    The API enforces rate limits to ensure fair usage. Current limits are 1000 requests per hour per API key. Exceeding limits returns a 429 status code with a Retry-After header.
+  </Expandable>
+</ExpandableGroup>
+
+## SDKs and Libraries
+
+We provide official SDKs for popular programming languages to make integration easier.
+
+<Columns cols={3}>
+  <Card title="JavaScript SDK" icon="code" href="#">
+    npm install chuks-williams-docs
+  </Card>
+  <Card title="Python SDK" icon="code" href="#">
+    pip install chuks-williams-docs
+  </Card>
+  <Card title="Go SDK" icon="code" href="#">
+    go get github.com/chuks-williams/docs-go
+  </Card>
+</Columns>
+
+## Example Usage
+
+<CodeGroup tabs="cURL,JavaScript,Python">
+  ```bash
+curl -X GET \
+  'https://api.chukswilliams.com/v1/projects' \
+  -H 'Authorization: Bearer your-api-key' \
+  -H 'Content-Type: application/json'
+  ```
+  ```javascript
+const ChuksWilliams = require('chuks-williams-docs');
+
+const client = new ChuksWilliams({
+  apiKey: 'your-api-key'
+});
+
+// List all projects
+client.projects.list()
+  .then(projects => console.log(projects))
+  .catch(error => console.error(error));
+  ```
+  ```python
+from chuks_williams_docs import Client
+
+client = Client(api_key='your-api-key')
+
+# List all projects
+projects = client.projects.list()
+print(projects)
+  ```
+</CodeGroup>
+
+## Webhooks
+
+Set up webhooks to receive real-time notifications about changes to your documentation.
+
+<Steps>
+  <Step title="Create Webhook Endpoint" icon="webhook">
+    Create an endpoint in your application that can receive POST requests with JSON payloads.
+  </Step>
+  <Step title="Register Webhook" icon="plus">
+    Use the API to register your webhook URL and specify which events to listen for.
+  </Step>
+  <Step title="Handle Events" icon="settings">
+    Process incoming webhook events and update your application accordingly.
+  </Step>
+</Steps>
+
+## Best Practices
+
+<Callout kind="tip">
+  Cache API responses when possible to reduce request volume and improve performance.
+</Callout>
+
+- Use appropriate HTTP status codes to handle different scenarios
+- Implement proper error handling and retries for failed requests
+- Keep your API keys secure and rotate them regularly
+- Monitor your API usage to stay within rate limits
+- Use webhooks for real-time updates instead of polling
+
+## Support
+
+If you encounter issues with the API or need help with integration, our support team is here to help. Check our documentation for detailed endpoint references and code examples.
